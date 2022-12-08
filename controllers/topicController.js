@@ -19,6 +19,16 @@ router.get('/', (req, res) => {
     }
   });
 
+
+  // UPDATE
+router.put('/:id', (req, res) => {
+  console.log(req.params.id)
+  Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    new: true,
+  }).then((adjustTopic) => res.json(adjustTopic));
+});
+
+
   router.delete('/:id', (req, res) => {
     Topic.findOneAndDelete({
       _id: req.params.id,

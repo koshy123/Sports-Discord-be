@@ -1,16 +1,16 @@
 [
     {
-      "topics": "messi",
+      "topic": "messi",
       "image": "url",
       "comments": "life of pi"
     },
     {
-        "topics": "Ronny",
+        "topic": "Ronny",
         "image": "url",
         "comments": "life of pi"
       },
       {
-        "topics": "LeCap",
+        "topic": "LeCap",
         "image": "url",
         "comments": "life of pi"
       }

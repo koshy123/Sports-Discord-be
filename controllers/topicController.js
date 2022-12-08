@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Topic = require('../models/topic');
+const Topic = require('../models/Topic');
 
 const router = express.Router();
 

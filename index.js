@@ -1,28 +1,41 @@
-// Dependencies
+// Require necessary NPM packages
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 
-// Instantiate Express app
+const bodyParser = require('body-parser')
+
+require("dotenv").config({ path: "./.env" });
+
+// Instantiate express application object
 const app = express();
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const topicController = require('./controllers/topicController')
+
+// The `.use` method sets up middleware in Express
+
+// Set up cors middleware and make sure that it
+// comes before our routes are used.
 app.use(cors());
 
-app.set('port', process.env.PORT || 3000);
+// Add `express.json` middleware which will
+// parse JSON requests into JS objects before
+// they reach the route files.
+app.use(express.json());
 
-// Redirect
+// The urlencoded middleware parses requests which use
+// a specific content type (such as when using Axios)
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 
+app.use(express.urlencoded({ extended: true }));
 
-// Controllers
-const topics = require('./controllers/topicController');
-app.use('/topics',topics );
+app.use('/api/topics', topicController)
 
+// Define a port for API to run on, if the environment
+// variable called `PORT` is not found use port 4000
+app.set('port', process.env.PORT || 4000);
+// Run server on designated port
 app.listen(app.get('port'), () => {
-	console.log(
-		'Hello world! ⭐️ Express GAphy API listening on port ' + app.get('port')
-	);
+  console.log('listening on port ' + app.get('port'));
 });
-
-module.exports =app

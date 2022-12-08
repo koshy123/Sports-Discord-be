@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config()
 
-const mongoURI =
+const mongoURI = process.env.DATABASE_URL
   process.env.NODE_ENV === 'production'
-    ? process.env.MONGODB_URI
-    : 'mongodb://localhost/sports-discord';
+    ? process.env.DATABASE_URL
+    : 'mongodb://localhost/back-end';
 
 mongoose
 .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -13,4 +13,4 @@ mongoose
   )
   .catch((error) => console.log('Connection failed!', error));
 
-module.exports = mongoose;
+  module.exports = mongoose;

@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
   router.delete('/:id', (req, res) => {
     Topic.findOneAndDelete({
       _id: req.params.id,
-    }).then((deleteTopic) => res.json(deleteTopic));
+    }).then((deleteTopic) => res.json(deleteTopic)); //comments
   });
 
   module.exports = router;

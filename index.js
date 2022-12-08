@@ -16,8 +16,8 @@ app.set('port', process.env.PORT || 3000);
 
 
 // Controllers
-const  = require('./controllers/');
-app.use('/', );
+const topics = require('./controllers/topics');
+app.use('/topics', topics);
 
 app.listen(app.get('port'), () => {
 	console.log(

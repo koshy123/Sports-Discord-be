@@ -2,8 +2,8 @@ const mongoose = require('../db/connection')
 const Schema = mongoose.Schema
 
 const Topic = new Schema({
-  firstName: String,
-  lastName: String,
+  topic: String,
+  image: String,
   comments: String
   
 })

@@ -12,13 +12,11 @@ router.get('/', (req, res) => {
 
   router.post('/', async (req, res, next) => {
     try {
-          const topics = await Topic.create(req.body)
-      //const bookmarks = await Bookmark.find({}).populate('owner')
-      
+          const topics = await Topic.create(req.body)      
       res.json(topics);
     } catch (err) {
-      
       next(err);
     }
   });
 
+  module.exports = router;

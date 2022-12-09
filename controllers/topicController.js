@@ -8,7 +8,15 @@ const router = express.Router();
 router.get('/', (req, res) => {
     Topic.find().then((topics) => res.json(topics));
   });
-
+  
+router.get('/:id', async (req, res, next) => {
+    try {
+      const topicId = await Topic.findById(req.params.id);
+      res.json(topicId);
+    } catch (err) {
+      next(err);
+    }
+  });
 
   router.post('/', async (req, res, next) => {
     try {

@@ -24,12 +24,25 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', (req, res) => {
   Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
-  }).then((adjustTopic) => res.json(adjustTopic));
+  }).then((adjustTopic) =>  {
+    Topic.find({}).then((topics) => {
+      console.log(topics)
+      res.json(topics)
+    })
+  }); 
 });
+
+
 router.delete('/:id', (req, res) => {
     Topic.findOneAndDelete({
       _id: req.params.id,
-    }).then((deleteTopic) => res.json(deleteTopic)); 
+    }).then((deleteTopic) => {
+      Topic.find({}).then((topics) => {
+        console.log(topics)
+        res.json(topics)
+        
+      })
+    }); 
   });
 
 module.exports = router;

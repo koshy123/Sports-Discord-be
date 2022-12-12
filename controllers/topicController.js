@@ -25,12 +25,8 @@ router.put('/:id', (req, res) => {
   Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
   }).then((updateTopic) => {
-    console.log(updateTopic)
-    console.log(req.body)
-
     Topic.find({}).then((topics) => {
       res.json(topics)
-      
     })
   }); 
 });
@@ -40,9 +36,7 @@ router.delete('/:id', (req, res) => {
       _id: req.params.id,
     }).then((deleteTopic) => {
       Topic.find({}).then((topics) => {
-        console.log(topics)
         res.json(topics)
-        
       })
     }); 
   });

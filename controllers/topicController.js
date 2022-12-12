@@ -15,15 +15,22 @@ router.get('/:id', async (req, res, next) => {
   });
 
 
-  router.post('/', async (req, res, next) => {
-    Topic.create( req.body , {
-      new: true,
-    }).then((updateTopic) => {
+  // router.post('/', async (req, res) => {
+  //   const newTopic = await Topic.create( req.body , {
+  //     new: true,
+  //   }).then(() => {
+  //     Topic.find({}).then((topics) => {
+  //       res.json(topics)
+  //     })
+  //   }); 
+  // });
+  router.post('/', async (req, res) => {
+    const newTopic = await Topic.create(req.body).then((updateTopic) => {
       Topic.find({}).then((topics) => {
         res.json(topics)
       })
     }); 
-  });
+})
 router.put('/:id', (req, res) => {
   Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,

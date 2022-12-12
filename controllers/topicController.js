@@ -25,11 +25,8 @@ router.get('/:id', async (req, res, next) => {
   //   }); 
   // });
   router.post('/', async (req, res) => {
-    const newTopic = await Topic.create(req.body).then((updateTopic) => {
-      Topic.find({}).then((topics) => {
-        res.json(topics)
-      })
-    }); 
+    const newTopic = await Topic.create(req.body)
+    res.status(201).json(newTopic)
 })
 router.put('/:id', (req, res) => {
   Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {

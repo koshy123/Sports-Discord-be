@@ -13,13 +13,16 @@ router.get('/:id', async (req, res, next) => {
       next(err);
     }
   });
-router.post('/', async (req, res, next) => {
-    try {
-          const topics = await Topic.create(req.body)      
-      res.json(topics);
-    } catch (err) {
-      next(err);
-    }
+
+
+  router.post('/', async (req, res, next) => {
+    Topic.create( req.body , {
+      new: true,
+    }).then((updateTopic) => {
+      Topic.find({}).then((topics) => {
+        res.json(topics)
+      })
+    }); 
   });
 router.put('/:id', (req, res) => {
   Topic.findOneAndUpdate({ _id: req.params.id }, req.body, {

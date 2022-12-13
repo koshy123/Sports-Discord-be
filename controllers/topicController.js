@@ -38,6 +38,17 @@ router.put('/:id', (req, res) => {
   }); 
 });
 
+router.put('/addComment/:id', (req, res) => {
+  Topic.findById(req.params.id , async (error, topic) => {
+      topic.comments.push(req.body.comment)
+      console.log(req.body, Topic)
+      await topic.save()
+      Topic.find({}).then((topics) => {
+        res.json(topics)
+      })
+  })
+});
+
 router.delete('/:id', (req, res) => {
     Topic.findOneAndDelete({
       _id: req.params.id,
